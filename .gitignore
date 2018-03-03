@@ -28,6 +28,14 @@
 *.a
 *.lib
 
+# UNREAL ENGINE DERIVED FILES
+*/Build
+*/Binaries
+*/DerivedDataCache
+*/Intermediate
+*/Saved
+
+
 # Executables
 *.exe
 *.out

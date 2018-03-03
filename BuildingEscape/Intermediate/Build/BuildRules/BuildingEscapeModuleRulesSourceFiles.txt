@@ -1,3 +1,0 @@
-D:\Programming\GitHub\unrealcourse\BuildingEscape\Source\BuildingEscape\BuildingEscape.Build.cs
-D:\Programming\GitHub\unrealcourse\BuildingEscape\Source\BuildingEscape.Target.cs
-D:\Programming\GitHub\unrealcourse\BuildingEscape\Source\BuildingEscapeEditor.Target.cs
