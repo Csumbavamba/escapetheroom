@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
+// #include "Components/InputComponent.h"
 #include "Components/ActorComponent.h"
 #include "Grabber.generated.h"
 
@@ -23,12 +25,26 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
 	
 private:
 	// How far ahead can the player reach in CM
 	float Reach = 100.0f;
 
+	UPhysicsHandleComponent * PhysicsHandle = nullptr;
 
+	UInputComponent * InputComponent = nullptr;
+
+	// Ray-Cast and grab what's in reach
+	void Grab();
+
+	// called when grab is realeased
+	void Release();
+
+	void FindPhysicsHandleComponent();
+	void SetupInputComponent();
 		
+	// Return HIT for first pyhsics body reached
+	const FHitResult GetFirstPhysicsBodyInReach();
 	
 };
