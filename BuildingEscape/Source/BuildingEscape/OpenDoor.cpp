@@ -25,6 +25,16 @@ void UOpenDoor::BeginPlay()
 
 	// Find owning actor
 	Owner = GetOwner();
+
+	if (!Owner)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Door owner is a nullptr"))
+	}
+
+	if (!PressurePlate)
+	{
+		UE_LOG(LogTemp, Error, TEXT("%s is a nullptr"), *GetOwner()->GetName())
+	}
 	
 	
 	
@@ -33,12 +43,14 @@ void UOpenDoor::BeginPlay()
 void UOpenDoor::OpenDoor()
 {
 	// Set door rotation
+	if (!Owner) { return; }
 	Owner->SetActorRotation(FRotator(0.0f, OpenAngle, 0.0f));
 }
 
 void UOpenDoor::CloseDoor()
 {
 	// Set door rotation
+	if (!Owner) { return; }
 	Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
 }
 
@@ -71,7 +83,8 @@ float UOpenDoor::GetTotalMassOfActorsOnPlate()
 	// Find all overlapping actors
 	TArray<AActor*> OverlappingActors;
 
-	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
+	if (!PressurePlate) { return TotalMass; }
+	PressurePlate->GetOverlappingActors(OUT OverlappingActors);	
 
 	// Iterate throught them addign their masses
 	for (const auto* Actor : OverlappingActors)
